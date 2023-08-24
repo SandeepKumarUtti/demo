@@ -1,14 +1,25 @@
 package com.example.practiceproject.demo.Entities;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Employee")
 public class Employee {
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
     public Employee() {
     }
 
-    public Employee(Integer id, String firstName, String lastName, String email) {
+    public Employee(Long id, String firstName, String lastName, String email) {
         super();
         this.id = id;
         this.firstName = firstName;
@@ -16,11 +27,11 @@ public class Employee {
         this.email = email;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
