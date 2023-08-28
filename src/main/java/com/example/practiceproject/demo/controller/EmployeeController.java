@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.practiceproject.demo.Dto.AuthRequest;
 import com.example.practiceproject.demo.Entities.Employee;
 import com.example.practiceproject.demo.Services.EmployeeService;
+import com.example.practiceproject.demo.Services.JwtService;
+
 import jakarta.websocket.server.PathParam;
 
 
@@ -19,7 +23,10 @@ import jakarta.websocket.server.PathParam;
 public class EmployeeController {
 
     @Autowired
-    private EmployeeService employeeService;    
+    private EmployeeService employeeService;
+    
+    @Autowired
+    private JwtService pJwtService;
     
     @GetMapping(path = "/all")
     public @ResponseBody Iterable<Employee> getEmployees() {
@@ -44,5 +51,11 @@ public class EmployeeController {
     @DeleteMapping(value = "path/{id}")
     public void DeleteEmployee(@PathParam("id") Long id) {
         employeeService.deleteEmployee(id);
+    }
+
+
+    @PostMapping("/authenticate")
+    public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
+        return pJwtService.generateToken(authRequest.getUserName());
     }
 }
