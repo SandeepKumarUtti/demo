@@ -3,6 +3,7 @@ package com.example.practiceproject.demo.Services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.practiceproject.demo.Entities.Employee;
@@ -15,23 +16,23 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public EmployeeService() {
-        System.out.println("EmployeeService instantiated!");
 
     }
 
     public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
-        System.out.println("EmployeeService instantiated!222");
-
     }
 
     public List<Employee> getAllEmployees() {
-         System.out.println("EmployeeService getAll");
         return employeeRepository.findAll();
     }
 
     public Employee addEmployee(Employee employee) {
+        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
         return employeeRepository.save(employee);
     }
 
