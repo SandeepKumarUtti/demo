@@ -31,7 +31,7 @@ public class EmployeeController {
         return employeeService.getEmployeeByID(id);
     }
 
-    @PostMapping(path = "/")
+    @PostMapping(path = "/addNewEmployee")
     public void postEmployee(@RequestBody Employee employee) {
         employeeService.addEmployee(employee);
     }
@@ -44,5 +44,10 @@ public class EmployeeController {
     @DeleteMapping(value = "path/{id}")
     public void DeleteEmployee(@PathParam("id") Long id) {
         employeeService.deleteEmployee(id);
+    }
+
+     @DeleteMapping(value = "deleteAll")
+    public void DeleteEmployee() {
+        employeeService.deleteAllEmployees();;
     }
 }

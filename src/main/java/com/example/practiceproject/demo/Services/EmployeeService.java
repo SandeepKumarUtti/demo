@@ -15,19 +15,17 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+
     public EmployeeService() {
-        System.out.println("EmployeeService instantiated!");
 
     }
 
     public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
-        System.out.println("EmployeeService instantiated!222");
 
     }
 
     public List<Employee> getAllEmployees() {
-         System.out.println("EmployeeService getAll");
         return employeeRepository.findAll();
     }
 
@@ -50,5 +48,9 @@ public class EmployeeService {
 
     public void deleteEmployee(Long id) {
         employeeRepository.deleteById(id);
+    }
+
+    public void deleteAllEmployees() {
+      employeeRepository.deleteAll();
     }
 }
