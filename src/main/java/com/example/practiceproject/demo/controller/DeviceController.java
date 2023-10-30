@@ -19,7 +19,7 @@ public class DeviceController {
     private DeviceService deviceService;
 
     @GetMapping(path = "/allDevices")
-    public @ResponseBody Iterable<Devices> getAllDevices() {
+    public Iterable<Devices> getAllDevices() {
         return deviceService.allDevices();
     }
     @PostMapping(path = "/addNewDevice")

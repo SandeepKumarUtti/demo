@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.practiceproject.demo.Entities.Employee;
 import com.example.practiceproject.demo.Services.EmployeeService;
@@ -22,7 +21,7 @@ public class EmployeeController {
     private EmployeeService employeeService;    
     
     @GetMapping(path = "/all")
-    public @ResponseBody Iterable<Employee> getEmployees() {
+    public Iterable<Employee> getEmployees() {
         return employeeService.getAllEmployees();
     }
     
